@@ -44,7 +44,7 @@ spec:
       repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
       revision: HEAD
       directories:
-      - path: helm
+      - path: helm/*
   template:
     metadata:
       name: '{{path.basename}}'
