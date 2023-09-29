@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: apps
-  namespace: argocd
+  namespace: default
 spec:
   generators:
   - git:
@@ -37,7 +37,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: helms
-  namespace: argocd
+  namespace: default
 spec:
   generators:
   - git:
