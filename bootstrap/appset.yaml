@@ -1,0 +1,74 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
+      revision: HEAD
+      directories:
+      - path: apps/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+      labels: 
+        type: app
+    spec:
+      destination:
+        server: https://kubernetes.default.svc
+      project: default
+      source:
+        repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
+        path: '{{path}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        - PruneLast=true
+        - ServerSideApply=true
+        retry:
+          limit: 5
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: helms
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
+      revision: HEAD
+      directories:
+      - path: helm
+  template:
+    metadata:
+      name: '{{path.basename}}'
+      labels:
+        type: support-office
+    spec:
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
+      project: default
+      source:
+        repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
+        path: '{{path}}'
+        helm:
+          releaseName: '{{path.basename}}'
+          valueFiles:
+          - values.yaml
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        - PruneLast=true
+        - ServerSideApply=true
+        retry:
+          limit: 5
