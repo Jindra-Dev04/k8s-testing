@@ -39,12 +39,16 @@ metadata:
   name: helms
   namespace: default
 spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   generators:
   - git:
       repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
       revision: HEAD
       directories:
       - path: helm/*
+      - path: helm/metrics-server
+        exclude: true
   template:
     metadata:
       name: '{{path.basename}}'
@@ -62,7 +66,7 @@ spec:
           releaseName: '{{path.basename}}'
           valueFiles:
           - values.yaml
-      syncPolicy:
+      syncPolicy: 
         automated:
           prune: true
           selfHeal: true
