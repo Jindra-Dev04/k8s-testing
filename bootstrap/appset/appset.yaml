@@ -49,6 +49,8 @@ spec:
       - path: helm/*
       - path: helm/metrics-server
         exclude: true
+      - exclude: true	
+        path: helm/grafana
   template:
     metadata:
       name: '{{path.basename}}'
@@ -90,7 +92,7 @@ spec:
       directories:
       - path: helm/*
       - path: helm/grafana
-        exclude: true
+        exclude: false
       - path: helm/reflector
         exclude: true
   template:
