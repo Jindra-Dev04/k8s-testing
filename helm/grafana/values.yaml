@@ -40,4 +40,4 @@ grafana:
 
   persistence:
     type: pvc
-    enabled: false
+    enabled: true
