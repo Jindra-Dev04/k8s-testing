@@ -37,3 +37,7 @@ grafana:
         jsonData:
           prometheusType: Mimir
           prometheusVersion: 2.3.0
+
+  persistence:
+    type: pvc
+    enabled: false
