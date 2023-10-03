@@ -89,6 +89,8 @@ spec:
       revision: HEAD
       directories:
       - path: helm/*
+      - path: helm/grafana
+        exclude: true
       - path: helm/reflector
         exclude: true
   template:

@@ -1,0 +1,39 @@
+grafana:
+  grafana.ini:
+    server:
+      root_url: https://grafana.nextap.codes
+      serve_from_sub_path: true
+    auth.github:
+      enabled: true
+      allow_sign_up: true
+      scopes: user:email,read:org
+      auth_url: https://github.com/login/oauth/authorize
+      token_url: https://github.com/login/oauth/access_token
+      api_url: https://api.github.com/user
+      team_ids: "5619750"
+      allowed_organizations: nextap-solutions 
+      client_id: ${GITHUB_CLIENT_ID}
+      client_secret: ${GITHUB_CLIENT_SECRET}
+      allow_assign_grafana_admin: true
+      skip_org_role_sync: true
+  
+  admin:
+    existingSecret: grafana-secrets
+    userKey: ADMIN_USER
+    passwordKey: ADMIN_PASSWORD
+
+
+  envFromSecrets:
+    - name: grafana-secrets
+
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: mimir
+        type: prometheus
+        url: https://mimir.nextap.codes/prometheus
+        isDefault: true
+        jsonData:
+          prometheusType: Mimir
+          prometheusVersion: 2.3.0
