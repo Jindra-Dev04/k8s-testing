@@ -1,0 +1,23 @@
+pvc:
+  storage: 10Gi
+
+nats:
+  nats:
+    resources:
+      requests:
+        cpu: 1500m
+        memory: 2.2Gi
+      limits:
+        cpu: 2000m
+        memory: 3.0Gi
+
+    jetstream:
+      memStorage:
+        size: "2Gi"
+
+      fileStorage:
+        size: "8Gi"
+
+  cluster:
+    replicas: 4
+

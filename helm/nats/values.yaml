@@ -1,0 +1,29 @@
+nats:
+  exporter:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      labels:
+        instance: metrics
+
+  nats:
+    image: nats:2.10.2-alpine
+
+    jetstream:
+      enabled: true
+
+      memStorage:
+        enabled: true
+        size: "2Gi"
+
+      fileStorage:
+        enabled: true
+        size: "2Gi"
+
+  natsbox:
+    enabled: true
+
+  cluster:
+    enabled: true
+    name: "nats"
+    replicas: 1

@@ -1,0 +1,19 @@
+nats:
+  nats:
+    resources:
+      requests:
+        cpu: 150m
+        memory: 300Mi
+      limits:
+        cpu: 300m
+        memory: 750Mi
+    jetstream:
+      memStorage:
+        size: "500Mi"
+
+      fileStorage:
+        size: 1Gi
+
+  cluster:
+    enabled: false
+    replicas: 1
