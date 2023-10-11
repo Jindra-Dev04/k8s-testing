@@ -1,4 +1,56 @@
 nats:
+  config:
+    jetstream:
+      enabled: true
+      fileStore:
+        pvc:
+          name:
+            $tplYaml: >-
+              {{ include "nats.fullname" . }}-js-pvc
+
+  statefulSet:
+    patch:
+    - op: remove
+      path: /spec/selector/matchLabels/app.kubernetes.io~1component
+    - $tplYamlSpread: |-
+        {{- if and 
+          .Values.config.jetstream.enabled
+          .Values.config.jetstream.fileStore.enabled
+          .Values.config.jetstream.fileStore.pvc.enabled
+          .Values.config.resolver.enabled
+          .Values.config.resolver.pvc.enabled
+        }}
+        - op: move
+          from: /spec/volumeClaimTemplates/0
+          path: /spec/volumeClaimTemplates/1
+        {{- else}}
+        []
+        {{- end }}
+
+  headlessService:
+    name:
+      $tplYaml: >-
+        {{ include "nats.fullname" . }}
+  
+  serviceAccount:
+    enabled: true
+  
+  service:
+    name:
+      $tplYaml: >-
+        {{ include "nats.fullname" . }}
+
+  natsBox:
+    deployment:
+      patch:
+      - op: replace
+        path: /spec/selector/matchLabels
+        value:
+          app: nats-box
+      - op: add
+        path: /spec/template/metadata/labels/app
+        value: nats-box
+
   exporter:
     enabled: true
     serviceMonitor:
