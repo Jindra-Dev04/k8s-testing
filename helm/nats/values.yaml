@@ -26,4 +26,4 @@ nats:
   cluster:
     enabled: true
     name: "nats"
-    replicas: 1
+    replicas: 3
