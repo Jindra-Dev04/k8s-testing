@@ -7,7 +7,7 @@ spec:
   generators:
   - git:
       repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
-      revision: HEAD
+      revision: test/nats-update
       directories:
       - path: apps/*
   template:
