@@ -28,4 +28,4 @@ spec:
                 - -ms=16
                 - foo
           restartPolicy: Never
-  schedule: "0 0 * * *"
+  schedule: "* * * * *"
