@@ -48,7 +48,7 @@ nats:
   headlessService:
     name:
       $tplYaml: >-
-        {{ include "nats.fullname" . }}
+        {{ include "nats.fullname" . }}-headless
   
   serviceAccount:
     enabled: true
