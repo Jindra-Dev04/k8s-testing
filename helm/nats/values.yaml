@@ -2,13 +2,29 @@ nats:
   fullnameOverride: nats
 
   config:
+    cluster:
+      enabled: true
+      replicas: 3
+
     jetstream:
       enabled: true
       fileStore:
+        enabled: true
         pvc:
+          enabled: true
+          size: 2Gi
           name:
             $tplYaml: >-
               {{ include "nats.fullname" . }}-js-pvc
+      memoryStore:
+        enabled: true
+        maxSize: 2Gi
+
+  promExporter:
+    enabled: true
+
+    podMonitor:
+      enabled: false
 
   statefulSet:
     patch:
@@ -41,6 +57,17 @@ nats:
     name:
       $tplYaml: >-
         {{ include "nats.fullname" . }}
+    ports:
+      leafnodes:
+        enabled: false
+      websocket:
+        enabled: false
+      mqtt:
+        enabled: false
+      cluster:
+        enabled: true
+      monitor:
+        enabled: true
 
   natsBox:
     deployment:
