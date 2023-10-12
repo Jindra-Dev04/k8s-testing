@@ -1,4 +1,6 @@
 nats:
+  fullnameOverride: nats
+
   config:
     jetstream:
       enabled: true
