@@ -88,6 +88,8 @@ nats:
         instance: metrics
 
   nats:
+    image: nats:2.10.2-alpine
+
     jetstream:
       enabled: true
 
