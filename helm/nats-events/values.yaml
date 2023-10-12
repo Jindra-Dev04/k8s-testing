@@ -1,4 +1,85 @@
 nats:
+  fullnameOverride: nats-events
+
+  config:
+    cluster:
+      enabled: true
+      replicas: 3
+
+    jetstream:
+      enabled: true
+      fileStore:
+        enabled: true
+        pvc:
+          enabled: true
+          size: 2Gi
+          name:
+            $tplYaml: >-
+              {{ include "nats.fullname" . }}-js-pvc
+      memoryStore:
+        enabled: true
+        maxSize: 2Gi
+
+  promExporter:
+    enabled: true
+
+    podMonitor:
+      enabled: true
+
+  statefulSet:
+    patch:
+    - op: remove
+      path: /spec/selector/matchLabels/app.kubernetes.io~1component
+    - $tplYamlSpread: |-
+        {{- if and 
+          .Values.config.jetstream.enabled
+          .Values.config.jetstream.fileStore.enabled
+          .Values.config.jetstream.fileStore.pvc.enabled
+          .Values.config.resolver.enabled
+          .Values.config.resolver.pvc.enabled
+        }}
+        - op: move
+          from: /spec/volumeClaimTemplates/0
+          path: /spec/volumeClaimTemplates/1
+        {{- else}}
+        []
+        {{- end }}
+
+  headlessService:
+    name:
+      $tplYaml: >-
+        {{ include "nats.fullname" . }}
+  
+  serviceAccount:
+    enabled: true
+  
+  service:
+    name:
+      $tplYaml: >-
+        {{ include "nats.fullname" . }}-svc
+    ports:
+      leafnodes:
+        enabled: false
+      websocket:
+        enabled: false
+      mqtt:
+        enabled: false
+      cluster:
+        enabled: true
+      monitor:
+        enabled: true
+
+  natsBox:
+    deployment:
+      patch:
+      - op: replace
+        path: /spec/selector/matchLabels
+        value:
+          app: nats-box
+      - op: add
+        path: /spec/template/metadata/labels/app
+        value: nats-box
+
   exporter:
     enabled: true
     serviceMonitor:
