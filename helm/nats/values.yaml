@@ -87,6 +87,7 @@ nats:
       labels:
         instance: metrics
 
+  nats:
     jetstream:
       enabled: true
 
