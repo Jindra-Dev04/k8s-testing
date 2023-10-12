@@ -48,7 +48,7 @@ nats:
   headlessService:
     name:
       $tplYaml: >-
-        {{ include "nats.fullname" . }}-headless
+        {{ include "nats.fullname" . }}
   
   serviceAccount:
     enabled: true
@@ -56,7 +56,7 @@ nats:
   service:
     name:
       $tplYaml: >-
-        {{ include "nats.fullname" . }}
+        {{ include "nats.fullname" . }}-svc
     ports:
       leafnodes:
         enabled: false
