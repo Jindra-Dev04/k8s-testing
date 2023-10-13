@@ -1,0 +1,6 @@
+kube-prometheus-stack:
+  prometheus:
+    prometheusSpec:
+      serviceMonitorSelectorNilUsesHelmValues: true
+      serviceMonitorSelector: {}
+      serviceMonitorNamespaceSelector: {}
