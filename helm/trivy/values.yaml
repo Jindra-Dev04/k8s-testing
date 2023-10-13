@@ -3,3 +3,5 @@ trivy-operator:
     enabled: true
   trivy:
     ignoreUnfixed: true
+  operator:
+    metricsVulnIdEnabled: true
