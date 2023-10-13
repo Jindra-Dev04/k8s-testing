@@ -47,10 +47,6 @@ spec:
       revision: HEAD
       directories:
       - path: helm/*
-      - path: helm/metrics-server
-        exclude: true
-      - exclude: true	
-        path: helm/grafana
   template:
     metadata:
       name: '{{path.basename}}'
