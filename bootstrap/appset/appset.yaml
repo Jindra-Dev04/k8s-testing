@@ -64,55 +64,12 @@ spec:
       source:
         repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
         path: '{{path}}'
+        targetRevision: HEAD
         helm:
           releaseName: '{{path.basename}}'
           valueFiles:
           - values.yaml
       syncPolicy: 
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-        - CreateNamespace=true
-        - PruneLast=true
-        - ServerSideApply=true
-        retry:
-          limit: 5
----
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: helms-test
-  namespace: default
-spec:
-  generators:
-  - git:
-      repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
-      revision: HEAD
-      directories:
-      - path: helm/*
-      - path: helm/grafana
-        exclude: false
-      - path: helm/reflector
-        exclude: true
-  template:
-    metadata:
-      name: '{{path.basename}}'
-      labels:
-        type: support-office
-    spec:
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: '{{path.basename}}'
-      project: default
-      source:
-        repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
-        path: '{{path}}'
-        helm:
-          releaseName: '{{path.basename}}'
-          valueFiles:
-          - values.yaml
-      syncPolicy:
         automated:
           prune: true
           selfHeal: true
