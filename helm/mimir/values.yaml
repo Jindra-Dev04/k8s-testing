@@ -21,7 +21,7 @@ mimir-distributed:
           bucket_name: mimir-ruler
   global:
     extraEnvFrom:
-      - secretRef:
+    - secretRef:
         name: mimir-secrets
   
   minio:
