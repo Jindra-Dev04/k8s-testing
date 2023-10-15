@@ -26,3 +26,6 @@ mimir-distributed:
   
   minio:
     enabled: false
+  
+  gateway:
+    enabledNonEnterprise: true
