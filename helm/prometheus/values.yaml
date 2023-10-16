@@ -7,3 +7,6 @@ kube-prometheus-stack:
       probeSelectorNilUsesHelmValues: false
       serviceMonitorSelector: {}
       serviceMonitorNamespaceSelector: {}
+      
+      remoteWrite:
+      - url: http://192.168.194.216/api/v1/push
