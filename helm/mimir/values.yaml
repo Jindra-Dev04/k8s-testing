@@ -29,3 +29,20 @@ mimir-distributed:
   
   gateway:
     enabledNonEnterprise: true
+
+  metaMonitoring:
+    grafanaAgent:
+      enabled: false
+      metrics:
+        remote:
+          url: http://192.168.194.216/api/v1/push
+        scrapeK8s:
+          enabled: false
+          
+
+    dashboards:
+      enabled: true
+
+    serviceMonitor:
+      enabled: true
+  
