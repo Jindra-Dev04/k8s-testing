@@ -45,4 +45,8 @@ mimir-distributed:
 
     serviceMonitor:
       enabled: true
-  
+
+    prometheusRule:
+      enabled: true
+      mimirAlerts: false
+      mimirRules: true
