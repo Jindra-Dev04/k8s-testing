@@ -32,8 +32,6 @@ mimir-distributed:
       max_ingestion_rate: 2000000
       max_inflight_push_requests: 300000
       max_inflight_push_requests_bytes: 50000000
-      ingestion-rate-limit: 500000000
-      ingestion-burst-size: 500000000
     overrides:
       tenant1:
         ingestion_rate: 5000000
