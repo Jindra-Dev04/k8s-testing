@@ -64,3 +64,10 @@ mimir-distributed:
       enabled: true
       mimirAlerts: false
       mimirRules: true
+
+  distributor:
+    replicas: 2
+    resources:
+      requests:
+        cpu: 2
+        memory: 4Gi
