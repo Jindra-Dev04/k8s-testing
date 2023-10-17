@@ -70,7 +70,7 @@ mimir-distributed:
       mimirRules: true
 
   distributor:
-    replicas: 2
+    replicas: 6
     extraArgs:
       distributor.ingestion-rate-limit: "10000000000000"
 
