@@ -70,9 +70,15 @@ mimir-distributed:
       mimirRules: true
 
   distributor:
-    extraArgs:
     replicas: 2
-    resources:
-      requests:
-        cpu: 2
-        memory: 4Gi
+    extraArgs:
+      distributor.ingestion-rate-limit: "10000000000000"
+
+  ingester:
+    extraArgs:
+      ingester.max-global-series-per-user: "0"
+      ingester.max-global-series-per-metric: "0"
+
+  querier:
+    extraArgs:
+      querier.max-fetched-chunks-per-query: "8000000"
