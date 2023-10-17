@@ -44,7 +44,7 @@ spec:
   generators:
   - git:
       repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
-      revision: HEAD
+      revision: test/mimir-distributed
       directories:
       - path: helm/*
   template:
@@ -60,7 +60,7 @@ spec:
       source:
         repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
         path: '{{path}}'
-        targetRevision: HEAD
+        targetRevision: test/mimir-distributed
         helm:
           releaseName: '{{path.basename}}'
           valueFiles:
