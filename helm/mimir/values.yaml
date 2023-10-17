@@ -29,7 +29,7 @@ mimir-distributed:
       max_tenants: 1000
       max_inflight_push_requests: 300000
     distributor_limits: # limits that each distributor replica enforces
-      max_ingestion_rate: 200000
+      max_ingestion_rate: 2000000
       max_inflight_push_requests: 300000
       max_inflight_push_requests_bytes: 50000000
 
