@@ -32,6 +32,10 @@ mimir-distributed:
       max_ingestion_rate: 2000000
       max_inflight_push_requests: 300000
       max_inflight_push_requests_bytes: 50000000
+    overrides:
+      tenant1:
+        ingestion_rate: 5000000
+        ingestion_burst_size: 5000000
 
   global:
     extraEnvFrom:
@@ -66,6 +70,7 @@ mimir-distributed:
       mimirRules: true
 
   distributor:
+    extraArgs:
     replicas: 2
     resources:
       requests:
