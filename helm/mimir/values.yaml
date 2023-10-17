@@ -21,7 +21,7 @@ mimir-distributed:
           bucket_name: mimir-ruler
 
   runtimeConfig:
-    max_ingestion_rate: 20000
+    max_ingestion_rate: 2000000
     max_series: 1500000
     max_tenants: 1000
     max_inflight_push_requests: 30000
