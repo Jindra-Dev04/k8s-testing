@@ -35,7 +35,7 @@ mimir-distributed:
       enabled: false
       metrics:
         remote:
-          url: http://192.168.194.216/api/v1/push
+          url: "http://mimir-gateway.mimir.svc.cluster.local/api/v1/push"
         scrapeK8s:
           enabled: false
           
