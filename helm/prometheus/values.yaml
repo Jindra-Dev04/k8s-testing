@@ -9,4 +9,4 @@ kube-prometheus-stack:
       serviceMonitorNamespaceSelector: {}
       
       remoteWrite:
-      - url: http://192.168.194.216/api/v1/push
+      - url: http://mimir-gateway.mimir.svc.cluster.local/api/v1/push
