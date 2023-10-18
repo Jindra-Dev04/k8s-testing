@@ -75,9 +75,17 @@ mimir-distributed:
       distributor.ingestion-rate-limit: "10000000000000"
 
   ingester:
+    replicas: 3
     extraArgs:
       ingester.max-global-series-per-user: "0"
       ingester.max-global-series-per-metric: "0"
+    zoneAwareReplication:
+      enabled: false
+
+  store_gateway:
+    replicas: 1
+    zoneAwareReplication:
+      enabled: false
 
   querier:
     extraArgs:
