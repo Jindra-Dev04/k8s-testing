@@ -83,7 +83,7 @@ mimir-distributed:
       enabled: false
 
   store_gateway:
-    replicas: 1
+    replicas: 3
     zoneAwareReplication:
       enabled: false
 
