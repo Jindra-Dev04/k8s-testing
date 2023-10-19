@@ -70,7 +70,7 @@ mimir-distributed:
       mimirRules: true
 
   distributor:
-    replicas: 10
+    replicas: 8
     resources:
       limits:
         memory: 5.7Gi
@@ -81,7 +81,7 @@ mimir-distributed:
       distributor.ingestion-rate-limit: "10000000000000"
 
   ingester:
-    replicas: 10
+    replicas: 8
     resources:
       limits:
         memory: 12Gi
