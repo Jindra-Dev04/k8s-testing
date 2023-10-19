@@ -70,12 +70,24 @@ mimir-distributed:
       mimirRules: true
 
   distributor:
-    replicas: 6
+    replicas: 10
+    resources:
+      limits:
+        memory: 5.7Gi
+      requests:
+        cpu: 2
+        memory: 4Gi
     extraArgs:
       distributor.ingestion-rate-limit: "10000000000000"
 
   ingester:
-    replicas: 3
+    replicas: 10
+    resources:
+      limits:
+        memory: 12Gi
+      requests:
+        cpu: 3.5
+        memory: 8Gi
     extraArgs:
       ingester.max-global-series-per-user: "0"
       ingester.max-global-series-per-metric: "0"
