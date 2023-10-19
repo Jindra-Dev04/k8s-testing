@@ -75,8 +75,8 @@ mimir-distributed:
       limits:
         memory: 5.7Gi
       requests:
-        cpu: 2
-        memory: 4Gi
+        cpu: 1
+        memory: 2Gi
     extraArgs:
       distributor.ingestion-rate-limit: "10000000000000"
 
@@ -86,8 +86,8 @@ mimir-distributed:
       limits:
         memory: 12Gi
       requests:
-        cpu: 3.5
-        memory: 8Gi
+        cpu: 1
+        memory: 2Gi
     extraArgs:
       ingester.max-global-series-per-user: "0"
       ingester.max-global-series-per-metric: "0"
