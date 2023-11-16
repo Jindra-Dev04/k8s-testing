@@ -1,20 +1,20 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: mimir-ingress
-spec:
-  entryPoints:
-  - web
-  routes:
-  - kind: Rule
-    match: Host(`mimir.local.com`)
-    priority: 10
-    services:
-    - name: mimir-gateway
-      port: 80
-  - kind: Rule
-    match: Host(`minio.mimir.com`)
-    priority: 10
-    services:
-    - name: mimir-minio-console
-      port: 9001
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: mimir-ingress
+# spec:
+#   entryPoints:
+#   - web
+#   routes:
+#   - kind: Rule
+#     match: Host(`mimir.local.com`)
+#     priority: 10
+#     services:
+#     - name: mimir-gateway
+#       port: 80
+#   - kind: Rule
+#     match: Host(`minio.mimir.com`)
+#     priority: 10
+#     services:
+#     - name: mimir-minio-console
+#       port: 9001
