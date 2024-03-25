@@ -10,6 +10,6 @@ spec:
     server: https://kubernetes.default.svc
   project: iris-tech
   source:
-    path: bootstrap
+    path: bootstrap/appset
     repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
     targetRevision: HEAD
