@@ -18,7 +18,7 @@ spec:
     spec:
       destination:
         server: https://kubernetes.default.svc
-      project: default
+      project: iris-tech
       source:
         repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
         path: '{{path}}'
@@ -56,7 +56,7 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{path.basename}}'
-      project: default
+      project: iris-tech
       source:
         repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
         path: '{{path}}'
