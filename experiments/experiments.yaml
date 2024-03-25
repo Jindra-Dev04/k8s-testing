@@ -11,7 +11,7 @@ spec:
       repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
       revision: experiment/rollouts
       files:
-        - path: experiments/**/config.json
+        - path: experiments/helm/**/config.json
   template:
     metadata:
       name: '{{path.basename}}'
