@@ -35,3 +35,34 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{path.basename}}'
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: experiment-apps
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
+      revision: HEAD
+      directories:
+      - path: experiments/apps/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+      labels: 
+        type: app
+    spec:
+      destination:
+        server: https://kubernetes.default.svc
+      project: iris-tech
+      source:
+        repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
+        path: '{{path}}'
+        syncOptions:
+        - CreateNamespace=true
+        - PruneLast=true
+        - ServerSideApply=true
+        retry:
+          limit: 5
