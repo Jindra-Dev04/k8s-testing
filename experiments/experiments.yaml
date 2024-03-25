@@ -9,7 +9,7 @@ spec:
   generators:
   - git:
       repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
-      revision: HEAD
+      revision: experiment/rollouts
       files:
         - path: experiments/**/config.json
   template:
@@ -27,7 +27,7 @@ spec:
       source:
         repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
         path: '{{path}}'
-        targetRevision: HEAD
+        targetRevision: experiment/rollouts
         helm:
           releaseName: '{{path.basename}}'
           valueFiles:
