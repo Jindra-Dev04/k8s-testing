@@ -10,6 +10,7 @@ resources:
 - project.yaml
 - repository.yaml
 - namespace.yaml
+- experiments.yaml
 
 patches:
 - path: argocd-cm.yaml

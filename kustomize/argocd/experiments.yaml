@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: helms-experiments
+  namespace: argocd
+spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  generators:
+  - git:
+      repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
+      revision: HEAD
+      files:
+        - path: experiments/**/config.json
+  template:
+    metadata:
+      name: '{{path.basename}}'
+      annotations:
+        "argocd.argoproj.io/manifest-generate-paths": "{{path}}"
+    spec:
+      project: iris-tech
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        retry:
+          limit: 5
+      source:
+        repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
+        path: '{{path}}'
+        targetRevision: HEAD
+        helm:
+          releaseName: '{{path.basename}}'
+          valueFiles:
+          - values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
