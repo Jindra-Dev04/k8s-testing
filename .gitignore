@@ -1,1 +1,3 @@
 helm/grafana/secrets.yaml
+helm/mimir/secrets.yaml
+.DS_Store
