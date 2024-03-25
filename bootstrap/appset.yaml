@@ -60,6 +60,8 @@ spec:
         automated:
           prune: true
           selfHeal: true
+        retry:
+          limit: 5
       source:
         repoURL: https://github.com/Jindra-Dev04/k8s-testing.git
         path: '{{path}}'
@@ -68,8 +70,6 @@ spec:
           releaseName: '{{path.basename}}'
           valueFiles:
           - values.yaml
-        retry:
-          limit: 5
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{path.basename}}'
